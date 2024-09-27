@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ingresar Club</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://t3.ftcdn.net/jpg/01/05/53/30/360_F_105533053_MjByMbal5SrrDjrOYc1AP1CJdMkNydtB.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .blurred-box {
+            background-color: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1, h2 {
+            color: #ff6f00;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .form-label {
+            color: #004d40;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 2px solid #ff6f00;
+        }
+
+        .btn-outline-dark {
+            border-color: #ff6f00;
+            color: #ff6f00;
+        }
+
+        .btn-outline-dark:hover {
+            background-color: #ff6f00;
+            color: white;
+        }
+
+        .btn-dark {
+            background-color: #004d40;
+            color: white;
+        }
+
+        .btn-dark:hover {
+            background-color: #ff6f00;
+        }
+
+        .button-group {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body class="container d-flex flex-column justify-content-center align-items-center">
+
+    <main class="d-flex justify-content-center flex-column align-items-center p-3 m-3">
+        <h1>Ingresar Club</h1>
+        <h2>Ingrese los datos del Club.</h2>
+        <br>
+
+        <div class="blurred-box">
+            <form th:action="@{/guardarClub}" th:object="${club}" method="post"
+                class="d-flex flex-column p-4 g-3 needs-validation m-3">
+
+                <input type="hidden" th:field="*{id}" th:value="${club.id}" />
+
+                <h4>Solicitud de datos:</h4>
+
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del Club"
+                        th:field="*{nombre}" th:errorclass="'form-control alert-danger'" required />
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+                </div>
+
+                <div class="mb-4">
+                    <label for="entrenador" class="form-label">Entrenador:</label>
+                    <select th:field="*{entrenador}" class="form-select" required>
+                        <th:block th:each="entrenador : ${listaEntrenador}">
+                            <option th:text="${entrenador.nombre}" th:value="${entrenador.id}"></option>
+                        </th:block>
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="asociacion" class="form-label">Asociación:</label>
+                    <select th:field="*{asociacion}" class="form-select" required>
+                        <th:block th:each="asociacion : ${listaAsociacion}">
+                            <option th:text="${asociacion.nombre}" th:value="${asociacion.id}"></option>
+                        </th:block>
+                    </select>
+                </div>
+
+                <!-- Sección de Checkboxes para los Playoffs -->
+                <div class="mb-4">
+                    <label class="form-label">Playoffs</label>
+                    <div class="form-check">
+                        <th:block th:each="playoff : ${listaPlayoffs}">
+                            <input type="checkbox" th:field="*{playoffs}" th:value="${playoff.id}"
+                                class="form-check-input" id="playoff-${playoff.id}" />
+                            <label class="form-check-label" th:for="'playoff-' + ${playoff.id}" th:text="${playoff.nombre}"></label>
+                        </th:block>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <input type="submit" class="form-control btn-outline-dark me-2" value="Enviar">
+                    <input type="reset" class="form-control btn-dark" value="Restablecer">
+                </div>
+
+				<a th:href="@{/verClub}" class="btn btn-secondary mt-3">Volver</a>
+            </form>
+        </div> <!-- Fin del contenedor difuminado -->
+    </main>
+</body>
+
+</html>

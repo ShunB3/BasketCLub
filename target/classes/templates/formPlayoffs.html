@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Playoffs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz3djiMe3NFnzpxCgF5jDtuRnuQ2IY42o9ZQ&s');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #ff6f00;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        label {
+            color: #004d40;
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            border: 2px solid #ff6f00;
+        }
+
+        .btn-primary {
+            background-color: #ff6f00;
+            border: none;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #004d40;
+        }
+
+        .btn-secondary {
+            background-color: #004d40;
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ff6f00;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${playoffs.id} == null ? 'Agregar Nueva Playoffs' : 'Editar Playoffs'"></h1>
+        <form th:action="@{/guardarPlayoffs}" th:object="${playoffs}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            
+            <div class="form-group">
+                <label for="nombre">Nombre Playoffs:</label>
+                <input type="text" id="nombre" class="form-control" th:field="*{nombre}" />
+            </div>
+            
+            <div class="form-group">
+                <label for="montoPremio">Monto del Premio:</label>
+                <input type="text" id="montoPremio" class="form-control" th:field="*{montoPremio}" />
+            </div>
+            
+            <div class="form-group">
+                <label for="fechaInicio">Fecha de Inicio:</label>
+                <input type="date" id="fechaInicio" class="form-control" th:field="*{fechaInicio}" />
+            </div>
+            
+            <div class="form-group">
+                <label for="fechaFin">Fecha de Fin:</label>
+                <input type="date" id="fechaFin" class="form-control" th:field="*{fechaFin}" />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+        </form>
+        <a th:href="@{/verPlayoffs}" class="btn btn-secondary btn-block mt-3">Volver</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

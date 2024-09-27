@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Entrenadores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/fotos-premium/fondo-baloncesto-ai-generation_201606-3728.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            color: white; /* Para que el texto sea visible sobre el fondo oscuro */
+        }
+
+        h1 {
+            color: #ff6f00; /* Naranja inspirado en el baloncesto */
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para hacer el texto más legible */
+        }
+
+        p {
+            color: white; /* Blanco para contraste */
+            font-size: 1.1em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra en el texto */
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 900px; /* Ancho máximo de la tabla */
+        }
+
+        /* Estilos para los botones */
+        .list-group-item a, .btn-primary, .btn-info, .btn-danger, .btn-secondary {
+            background-color: #ff6f00; /* Naranja como color principal */
+            color: white;
+            font-weight: bold;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover, .btn-info:hover, .btn-danger:hover, .btn-secondary:hover {
+            background-color: #004d40; /* Verde oscuro para el hover */
+            color: white;
+        }
+
+        /* Borde de las tarjetas */
+        .list-group-item, .table thead th {
+            border: 2px solid #ff6f00;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo del contenedor central */
+        .col-md-6 {
+            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con transparencia */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+        }
+
+        .table {
+            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco para la tabla con transparencia */
+            border-radius: 10px;
+            overflow: hidden; /* Para evitar bordes afilados */
+        }
+
+        .table thead {
+            background-color: #ff6f00; /* Color de cabecera */
+            color: white;
+        }
+
+        .table tbody tr td {
+            color: black; /* Texto negro en la tabla para legibilidad */
+        }
+
+        /* Ajustes para la tabla */
+        .table th, .table td {
+            vertical-align: middle; /* Alinear verticalmente el texto */
+            text-align: center; /* Centrar texto en las celdas */
+        }
+
+        .btn-sm {
+            padding: 5px 10px; /* Ajuste de tamaño de botón pequeño */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Lista de Entrenadores</h1>
+        <a th:href="@{/verEntrenador/formEntrenador}" class="btn btn-primary">Agregar Nuevo Entrenador</a>
+        <table class="table mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="entrenador : ${listaEntrenador}">
+                    <td th:text="${entrenador.id}">1</td>
+                    <td th:text="${entrenador.nombre}">Nombre Entrenador</td>
+                    <td th:text="${entrenador.apellido}">Apellido Entrenador</td>
+                    <td th:text="${entrenador.edad}">Edad Entrenador</td>
+                    <td>
+                        <a th:href="@{/entrenador/editar/{id}(id=${entrenador.id})}" class="btn btn-info btn-sm">Editar</a>
+                        <a th:href="@{/entrenador/eliminar/{id}(id=${entrenador.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/}" class="btn btn-secondary mt-3">Volver a la página principal</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

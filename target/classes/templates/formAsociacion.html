@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Asociación</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://png.pngtree.com/background/20230426/original/pngtree-top-hd-basketball-wallpapers-picture-image_2489033.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white; /* Para que el texto sea visible sobre el fondo oscuro */
+        }
+
+        .container {
+            margin-top: 50px;
+            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco semitransparente */
+            padding: 30px; /* Aumento de padding para el contenedor */
+            border-radius: 15px; /* Bordes redondeados */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+        }
+
+        h1 {
+            color: #ff6f00; /* Naranja inspirado en el baloncesto */
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para hacer el texto más legible */
+        }
+
+        .form-group label {
+            color: #004d40; /* Color para las etiquetas */
+            font-weight: bold;
+        }
+
+        .form-control {
+            border-radius: 5px; /* Bordes redondeados en los campos de entrada */
+            border: 2px solid #ff6f00; /* Borde de color naranja */
+        }
+
+        .btn-primary {
+            background-color: #ff6f00; /* Naranja como color principal */
+            border: none;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            background-color: #004d40; /* Verde oscuro para el hover */
+        }
+
+        .btn-secondary {
+            background-color: #004d40;
+            color: white;
+            border: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ff6f00; /* Cambia a naranja en hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 th:text="${asociacion.id == null ? 'Agregar Nueva Asociación' : 'Editar Asociación'}"></h1>
+        <form th:action="@{/guardarAsociacion}" th:object="${asociacion}" method="post">
+            <input type="hidden" th:field="*{id}" />
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" class="form-control" th:field="*{nombre}" required />
+            </div>
+            <div class="form-group">
+                <label for="pais">País:</label>
+                <input type="text" id="pais" class="form-control" th:field="*{pais}" required />
+            </div>
+            <div class="form-group">
+                <label for="presidente">Presidente:</label>
+                <input type="text" id="presidente" class="form-control" th:field="*{presidente}" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+        </form>
+        <a th:href="@{/verAsociacion}" class="btn btn-secondary mt-3">Volver</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
