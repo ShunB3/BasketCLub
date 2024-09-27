@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clubes Registrados</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('			https://t3.ftcdn.net/jpg/01/05/53/30/360_F_105533053_MjByMbal5SrrDjrOYc1AP1CJdMkNydtB.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            color: white; /* Para que el texto sea visible sobre el fondo oscuro */
+        }
+
+        h2 {
+            color: #ff6f00; /* Naranja inspirado en el baloncesto */
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para hacer el texto más legible */
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 900px; /* Ancho máximo de la tabla */
+            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con transparencia */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+        }
+
+        /* Estilos para los botones */
+        .btn-outline-primary {
+            border-color: #ff6f00;
+            color: #ff6f00;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn-outline-primary:hover {
+            background-color: #ff6f00;
+            color: white;
+        }
+
+        .btn-outline-success {
+            border-color: #004d40;
+            color: #004d40;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .btn-outline-success:hover {
+            background-color: #004d40;
+            color: white;
+        }
+
+        .table {
+            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco para la tabla con transparencia */
+            border-radius: 10px;
+            overflow: hidden; /* Para evitar bordes afilados */
+        }
+
+        .table thead {
+            background-color: #ff6f00; /* Color de cabecera */
+            color: white;
+        }
+
+        .table tbody tr td {
+            color: black; /* Texto negro en la tabla para legibilidad */
+        }
+
+        /* Ajustes para la tabla */
+        .table th, .table td {
+            vertical-align: middle; /* Alinear verticalmente el texto */
+            text-align: center; /* Centrar texto en las celdas */
+        }
+
+        .btn-xs {
+            padding: 5px 10px; /* Ajuste de tamaño de botón pequeño */
+        }
+    </style>
+</head>
+<body>
+    <div class="container p-4">
+        <center><h2 class="section__title">Clubes Registrados</h2></center><br><br>
+        <table class="table mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Entrenador</th>
+                    <th>Asociación</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="club: ${listaClub}">
+                    <td th:text="${club.id}"></td>
+                    <td th:text="${club.nombre}"></td>
+                    <td th:text="${club.Entrenador.nombre}"></td>
+                    <td th:text="${club.Asociacion.nombre}"></td>
+                    <td>
+                        <a class="btn btn-info btn-xs" th:href="@{'/club/editar' + '/' + ${club.id}}" th:text="'editar'"></a>
+                        &nbsp; &nbsp;
+                        <a class="btn btn-danger btn-xs" th:href="@{'/club/eliminar' + '/' + ${club.id}}" th:text="'eliminar'"></a>
+                    </td>    
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-center">
+            <div class="p-3"><br><a th:href="@{/verClub/formClub}" class="btn btn-outline-primary">Insertar Club</a></div>
+            <div class="p-3"><br><a th:href="@{/}" class="btn btn-outline-success">Inicio</a></div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

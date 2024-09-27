@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Jugadores</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('			https://images.unsplash.com/photo-1519861531473-9200262188bf?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            color: white; /* Para que el texto sea visible sobre el fondo oscuro */
+        }
+
+        h1 {
+            color: #ff6f00; /* Naranja inspirado en el baloncesto */
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para hacer el texto más legible */
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 900px; /* Ancho máximo de la tabla */
+        }
+
+        /* Estilo de la tabla */
+        .table {
+            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con transparencia */
+            border-radius: 10px;
+            overflow: hidden; /* Para evitar bordes afilados */
+        }
+
+        .table thead {
+            background-color: #ff6f00; /* Color de cabecera */
+            color: white;
+        }
+
+        .table tbody tr td {
+            color: black; /* Texto negro en la tabla para legibilidad */
+            text-align: center; /* Centrar texto en las celdas */
+        }
+
+        /* Estilos para los botones */
+        .btn-primary, .btn-info, .btn-danger, .btn-secondary {
+            background-color: #ff6f00; /* Naranja como color principal */
+            color: white;
+            font-weight: bold;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover, .btn-info:hover, .btn-danger:hover, .btn-secondary:hover {
+            background-color: #004d40; /* Verde oscuro para el hover */
+            color: white;
+        }
+
+        .btn-sm {
+            padding: 5px 10px; /* Ajuste de tamaño de botón pequeño */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Lista de Jugadores</h1>
+        <a th:href="@{/verJugador/formJugador}" class="btn btn-primary mb-3">Agregar Nuevo Jugador</a>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Número</th>
+                    <th>Posición</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="jugador : ${listaJugador}">
+                    <td th:text="${jugador.id}">1</td>
+                    <td th:text="${jugador.nombre}">Nombre Jugador</td>
+                    <td th:text="${jugador.apellido}">Apellido Jugador</td>
+                    <td th:text="${jugador.numero}">Número Jugador</td>
+                    <td th:text="${jugador.posicion}">Posición Jugador</td>
+                    <td>
+                        <a th:href="@{/jugador/editar/{id}(id=${jugador.id})}" class="btn btn-info btn-sm">Editar</a>
+                        <a th:href="@{/jugador/eliminar/{id}(id=${jugador.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/}" class="btn btn-secondary">Volver a la página principal</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Playoffs</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz3djiMe3NFnzpxCgF5jDtuRnuQ2IY42o9ZQ&s');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            color: white;
+        }
+
+        h1 {
+            color: #ff6f00;
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .container {
+            margin-top: 50px;
+            max-width: 900px;
+        }
+
+        .btn-primary, .btn-info, .btn-danger, .btn-secondary {
+            background-color: #ff6f00;
+            color: white;
+            font-weight: bold;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .btn-primary:hover, .btn-info:hover, .btn-danger:hover, .btn-secondary:hover {
+            background-color: #004d40;
+            color: white;
+        }
+
+        .table, .table thead th {
+            border: 2px solid #ff6f00;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .table {
+            background-color: rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table thead {
+            background-color: #ff6f00;
+            color: white;
+        }
+
+        .table tbody tr td {
+            color: black;
+        }
+
+        .table th, .table td {
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        .btn-sm {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Lista de Playoffs</h1>
+        <a th:href="@{/verPlayoffs/formPlayoffs}" class="btn btn-primary">Agregar Nueva Competición</a>
+        <table class="table mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Monto del Premio</th>
+                    <th>Fecha Inicial</th>
+                    <th>Fecha Final</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="playoffs : ${listaPlayoffs}">
+                    <td th:text="${playoffs.id}">1</td>
+                    <td th:text="${playoffs.nombre}">Nombre Competición</td>
+                    <td th:text="${playoffs.montoPremio}">Monto del Premio</td>
+                    <td th:text="${playoffs.fechaInicio}">Fecha de Inicio</td>
+                    <td th:text="${playoffs.fechaFin}">Fecha de Fin</td>
+                    <td>
+                        <a th:href="@{/playoffs/editar/{id}(id=${playoffs.id})}" class="btn btn-info btn-sm">Editar</a>
+                        <a th:href="@{/playoffs/eliminar/{id}(id=${playoffs.id})}" class="btn btn-danger btn-sm">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a th:href="@{/}" class="btn btn-secondary mt-3">Volver a la página principal</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

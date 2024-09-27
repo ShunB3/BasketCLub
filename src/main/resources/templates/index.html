@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Aterrizaje - Escuela de Baloncesto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://m.media-amazon.com/images/I/71p1nh1ZFRL._AC_UF894,1000_QL80_.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: 'Arial', sans-serif;
+            color: white; /* Para que el texto sea visible sobre el fondo oscuro */
+        }
+
+        h1 {
+            color: #ff6f00; /* Naranja inspirado en el baloncesto */
+            font-weight: bold;
+            margin-top: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para hacer el texto más legible */
+        }
+
+        p {
+            color: white; /* Blanco para contraste */
+            font-size: 1.1em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra en el texto */
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        /* Estilos para los botones */
+        .list-group-item a {
+            background-color: #ff6f00; /* Naranja como color principal */
+            color: white;
+            font-weight: bold;
+            border: none;
+            text-transform: uppercase;
+        }
+
+        .list-group-item a:hover {
+            background-color: #004d40; /* Verde oscuro para el hover */
+            color: white;
+        }
+
+        /* Borde de las tarjetas */
+        .list-group-item {
+            border: 2px solid #ff6f00;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Estilo del contenedor central */
+        .col-md-6 {
+            background-color: rgba(255, 255, 255, 0.85); /* Fondo blanco con transparencia */
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra suave */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Bienvenido a la Escuela de Baloncesto</h1>
+        <p class="text-center">Desarrollado por: Kevin Stiven Noreña Joya / Lina Yaneth Montero Zambrano</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <ul class="list-group">
+                    <li class="list-group-item"><a href="/verEntrenador" class="btn btn-primary btn-block">Lista de Entrenadores</a></li>
+					<li class="list-group-item"><a href="/verJugador" class="btn btn-primary btn-block">Lista de Jugadores</a></li>
+					<li class="list-group-item"><a href="/verAsociacion" class="btn btn-primary btn-block">Lista de Asociacion</a></li>
+                  <li class="list-group-item"><a href="/verPlayoffs" class="btn btn-primary btn-block">Lista de Playoffss</a></li>       
+                    <li class="list-group-item"><a href="/verClub" class="btn btn-primary btn-block">Lista de Clubes</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
